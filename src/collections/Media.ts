@@ -6,6 +6,9 @@ export const Media: CollectionConfig = {
     staticDir: 'media',
     mimeTypes: ['image/*'],
   },
+  access: {
+    read: () => true,
+  },
   fields: [
     {
       name: 'alt',

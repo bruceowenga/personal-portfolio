@@ -10,6 +10,8 @@ import { Experience } from './src/collections/Experience'
 import { Media } from './src/collections/Media'
 import { Skills } from './src/collections/Skills'
 
+import { SiteSettings } from './src/globals/SiteSettings'
+
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -19,6 +21,7 @@ export default buildConfig({
     user: 'users',
   },
   collections: [Users, Projects, Articles, Experience, Media, Skills],
+  globals: [SiteSettings],
   editor: lexicalEditor({}),
   secret: process.env.PAYLOAD_SECRET || 'your-secret-key-here',
   typescript: {

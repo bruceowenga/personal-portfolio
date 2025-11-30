@@ -33,9 +33,9 @@ export default function Contact() {
       <div className="w-full max-w-3xl bg-[#111] border border-[#333] rounded-xl p-12 text-center">
         <h3 className="text-2xl font-bold mb-2">Ready to Collaborate?</h3>
         <p className="text-secondary mb-8">Have a project in mind or want to discuss opportunities?</p>
-        <button className="text-white font-bold flex items-center justify-center gap-2 hover:underline mx-auto">
+        <a href="https://calendly.com/bruceowenga/30min" target="_blank" rel="noopener noreferrer" className="text-white font-bold flex items-center justify-center gap-2 hover:underline mx-auto">
           Schedule a call <span>→</span>
-        </button>
+        </a>
       </div>
     </section>
   );

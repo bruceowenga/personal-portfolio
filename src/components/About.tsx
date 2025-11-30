@@ -1,6 +1,13 @@
 import Image from "next/image";
 
-export default function About() {
+import { getSiteSettings } from "@/actions/globals";
+
+export default async function About() {
+  const siteSettings = await getSiteSettings();
+  const profileImage = siteSettings.profileImage && typeof siteSettings.profileImage === 'object' && 'url' in siteSettings.profileImage 
+    ? siteSettings.profileImage.url 
+    : null;
+
   return (
     <section id="about" className="py-20">
       <h2 className="text-4xl font-bold mb-12">About Me</h2>
@@ -44,10 +51,18 @@ export default function About() {
 
         <div className="flex-1 w-full">
            <div className="relative w-full aspect-square rounded-xl overflow-hidden border border-[#333]">
-              {/* Placeholder for the image from the screenshot */}
-              <div className="absolute inset-0 bg-[#111] flex items-center justify-center text-secondary">
-                 <span className="text-lg">Profile Image Placeholder</span>
-              </div>
+              {profileImage ? (
+                <Image 
+                  src={profileImage} 
+                  alt="Profile Image" 
+                  fill 
+                  className="object-cover"
+                />
+              ) : (
+                <div className="absolute inset-0 bg-[#111] flex items-center justify-center text-secondary">
+                   <span className="text-lg">Profile Image Placeholder</span>
+                </div>
+              )}
            </div>
         </div>
       </div>
