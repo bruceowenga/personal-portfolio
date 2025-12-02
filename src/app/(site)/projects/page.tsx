@@ -52,7 +52,7 @@ export default async function ProjectsPage() {
                   )}
                 </div>
 
-                <p className="text-secondary mb-6 leading-relaxed">
+                <p className="text-secondary mb-6 leading-relaxed line-clamp-3">
                   {project.description}
                 </p>
 

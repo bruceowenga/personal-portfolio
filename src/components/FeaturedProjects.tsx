@@ -50,7 +50,7 @@ export default async function FeaturedProjects() {
                   )}
                 </div>
 
-                <p className="text-secondary mb-6 leading-relaxed">
+                <p className="text-secondary mb-6 leading-relaxed line-clamp-3">
                   {project.description}
                 </p>
 

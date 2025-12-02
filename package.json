@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "payload migrate && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "generate:types": "payload generate:types"
@@ -15,6 +15,7 @@
     "@payloadcms/next": "3.65.0",
     "@payloadcms/richtext-lexical": "3.65.0",
     "@tryghost/content-api": "^1.12.2",
+    "framer-motion": "^12.23.24",
     "graphql": "^16.12.0",
     "lucide-react": "^0.378.0",
     "next": "^15.5.6",
