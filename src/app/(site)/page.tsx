@@ -7,6 +7,9 @@ import LatestArticles from "@/components/LatestArticles";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
+// Force dynamic rendering since components need database access
+export const dynamic = 'force-dynamic';
+
 export default function Home() {
   return (
     <div className="container">

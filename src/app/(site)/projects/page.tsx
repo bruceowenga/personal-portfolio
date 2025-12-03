@@ -8,6 +8,9 @@ const statusLabels: Record<string, string> = {
   'completed': 'Completed',
 };
 
+// Force dynamic rendering since we need database access
+export const dynamic = 'force-dynamic';
+
 export default async function ProjectsPage() {
   const projects = await getAllProjects();
 

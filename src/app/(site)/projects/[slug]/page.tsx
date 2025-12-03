@@ -9,11 +9,19 @@ const statusLabels: Record<string, string> = {
   'completed': 'Completed',
 };
 
+// Force dynamic rendering since we need database access
+export const dynamic = 'force-dynamic';
+
 export async function generateStaticParams() {
-  const projects = await getAllProjects();
-  return projects.map((project: any) => ({
-    slug: project.slug,
-  }));
+  try {
+    const projects = await getAllProjects();
+    return projects.map((project: any) => ({
+      slug: project.slug,
+    }));
+  } catch (error) {
+    // Return empty array if database is not available during build
+    return [];
+  }
 }
 
 export default async function ProjectPage({
