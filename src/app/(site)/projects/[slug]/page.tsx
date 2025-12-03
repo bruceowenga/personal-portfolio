@@ -1,4 +1,4 @@
-import { getProjectBySlug, getAllProjects } from "@/actions/projects";
+import { getProjectBySlug } from "@/actions/projects";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
@@ -11,18 +11,6 @@ const statusLabels: Record<string, string> = {
 
 // Force dynamic rendering since we need database access
 export const dynamic = 'force-dynamic';
-
-export async function generateStaticParams() {
-  try {
-    const projects = await getAllProjects();
-    return projects.map((project: any) => ({
-      slug: project.slug,
-    }));
-  } catch (error) {
-    // Return empty array if database is not available during build
-    return [];
-  }
-}
 
 export default async function ProjectPage({
   params,

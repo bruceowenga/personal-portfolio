@@ -277,7 +277,9 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI || process.env.POSTGRES_URL,
     },
-    push: true,
+    // Enable auto-push in production to create tables on first connection
+    // Disabled during build (NODE_ENV !== 'production' or when VERCEL_ENV === build time)
+    push: process.env.VERCEL_ENV === 'production' || process.env.NODE_ENV === 'production',
   }),
   plugins: [
     vercelBlobStorage({
