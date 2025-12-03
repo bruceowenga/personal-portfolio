@@ -4,43 +4,58 @@ import { getPayload } from 'payload'
 import config from '../../payload.config'
 
 export async function getFeaturedProjects() {
-  const payload = await getPayload({ config })
+  try {
+    const payload = await getPayload({ config })
 
-  const projects = await payload.find({
-    collection: 'projects',
-    where: {
-      featured: {
-        equals: true,
+    const projects = await payload.find({
+      collection: 'projects',
+      where: {
+        featured: {
+          equals: true,
+        },
       },
-    },
-    limit: 4,
-  })
+      limit: 4,
+    })
 
-  return projects.docs
+    return projects.docs
+  } catch (error) {
+    console.error('Error fetching featured projects:', error)
+    return []
+  }
 }
 
 export async function getAllProjects() {
-  const payload = await getPayload({ config })
+  try {
+    const payload = await getPayload({ config })
 
-  const projects = await payload.find({
-    collection: 'projects',
-  })
+    const projects = await payload.find({
+      collection: 'projects',
+    })
 
-  return projects.docs
+    return projects.docs
+  } catch (error) {
+    console.error('Error fetching all projects:', error)
+    return []
+  }
 }
 
 export async function getProjectBySlug(slug: string) {
-  const payload = await getPayload({ config })
+  try {
+    const payload = await getPayload({ config })
 
-  const projects = await payload.find({
-    collection: 'projects',
-    where: {
-      slug: {
-        equals: slug,
+    const projects = await payload.find({
+      collection: 'projects',
+      where: {
+        slug: {
+          equals: slug,
+        },
       },
-    },
-    limit: 1,
-  })
+      limit: 1,
+    })
 
-  return projects.docs[0] || null
+    return projects.docs[0] || null
+  } catch (error) {
+    console.error('Error fetching project by slug:', error)
+    return null
+  }
 }

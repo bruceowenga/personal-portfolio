@@ -4,12 +4,17 @@ import { getPayload } from 'payload'
 import config from '../../payload.config'
 
 export async function getAllExperience() {
-  const payload = await getPayload({ config })
+  try {
+    const payload = await getPayload({ config })
 
-  const experience = await payload.find({
-    collection: 'experience',
-    sort: '-order', // Sort by order descending (higher numbers first)
-  })
+    const experience = await payload.find({
+      collection: 'experience',
+      sort: '-order', // Sort by order descending (higher numbers first)
+    })
 
-  return experience.docs
+    return experience.docs
+  } catch (error) {
+    console.error('Error fetching experience:', error)
+    return []
+  }
 }

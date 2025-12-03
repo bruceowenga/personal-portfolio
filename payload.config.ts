@@ -275,11 +275,10 @@ export default buildConfig({
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI || process.env.POSTGRES_URL,
+      connectionString: process.env.POSTGRES_URL || process.env.DATABASE_URI,
     },
-    // Enable auto-push in production to create tables on first connection
-    // Disabled during build (NODE_ENV !== 'production' or when VERCEL_ENV === build time)
-    push: process.env.VERCEL_ENV === 'production' || process.env.NODE_ENV === 'production',
+    // Enable auto-push to create tables automatically
+    push: true,
   }),
   plugins: [
     vercelBlobStorage({

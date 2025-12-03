@@ -4,8 +4,8 @@ import { getSiteSettings } from "@/actions/globals";
 
 export default async function About() {
   const siteSettings = await getSiteSettings();
-  const profileImage = siteSettings.profileImage && typeof siteSettings.profileImage === 'object' && 'url' in siteSettings.profileImage 
-    ? siteSettings.profileImage.url 
+  const profileImage = siteSettings?.profileImage && typeof siteSettings.profileImage === 'object' && 'url' in siteSettings.profileImage
+    ? siteSettings.profileImage.url
     : null;
 
   return (
