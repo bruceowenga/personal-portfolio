@@ -280,14 +280,14 @@ export default buildConfig({
     // Enable auto-push to create tables automatically
     push: true,
   }),
-  plugins: process.env.BLOB_READ_WRITE_TOKEN
+  plugins: (process.env.BLOB_READ_WRITE_TOKEN || process.env.portfolio_READ_WRITE_TOKEN)
     ? [
         vercelBlobStorage({
           enabled: true,
           collections: {
             media: true,
           },
-          token: process.env.BLOB_READ_WRITE_TOKEN,
+          token: process.env.BLOB_READ_WRITE_TOKEN || process.env.portfolio_READ_WRITE_TOKEN || '',
         }),
       ]
     : [],
