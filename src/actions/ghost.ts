@@ -3,6 +3,10 @@
 import { ghostClient, GhostPost } from '@/lib/ghost'
 
 export async function getLatestPosts(limit: number = 3): Promise<GhostPost[]> {
+  if (!ghostClient) {
+    return []
+  }
+
   try {
     const posts = await ghostClient.posts.browse({
       limit,
@@ -17,6 +21,10 @@ export async function getLatestPosts(limit: number = 3): Promise<GhostPost[]> {
 }
 
 export async function getAllPosts(): Promise<GhostPost[]> {
+  if (!ghostClient) {
+    return []
+  }
+
   try {
     const posts = await ghostClient.posts.browse({
       limit: 'all',

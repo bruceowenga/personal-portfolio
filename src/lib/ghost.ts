@@ -1,11 +1,13 @@
 import GhostContentAPI from '@tryghost/content-api'
 
-// Create API instance with site credentials
-export const ghostClient = new GhostContentAPI({
-  url: 'https://blog.brucembudi.dev',
-  key: process.env.GHOST_CONTENT_API_KEY || '',
-  version: 'v5.0'
-})
+// Create API instance with site credentials only if key is provided
+export const ghostClient = process.env.GHOST_CONTENT_API_KEY
+  ? new GhostContentAPI({
+      url: 'https://blog.brucembudi.dev',
+      key: process.env.GHOST_CONTENT_API_KEY,
+      version: 'v5.0'
+    })
+  : null
 
 export interface GhostPost {
   id: string
