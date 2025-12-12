@@ -5,12 +5,13 @@ import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import type { CollectionConfig, GlobalConfig } from 'payload'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 // Collections defined inline to avoid import issues
-const Users = {
+const Users: CollectionConfig = {
   slug: 'users',
   auth: true,
   admin: {
@@ -25,7 +26,7 @@ const Users = {
   ],
 }
 
-const Projects = {
+const Projects: CollectionConfig = {
   slug: 'projects',
   admin: {
     useAsTitle: 'title',
@@ -91,7 +92,7 @@ const Projects = {
   ],
 }
 
-const Articles = {
+const Articles: CollectionConfig = {
   slug: 'articles',
   admin: {
     useAsTitle: 'title',
@@ -146,7 +147,7 @@ const Articles = {
   ],
 }
 
-const Experience = {
+const Experience: CollectionConfig = {
   slug: 'experience',
   admin: {
     useAsTitle: 'company',
@@ -200,7 +201,7 @@ const Experience = {
   ],
 }
 
-const Media = {
+const Media: CollectionConfig = {
   slug: 'media',
   upload: {
     staticDir: 'media',
@@ -218,7 +219,7 @@ const Media = {
   ],
 }
 
-const Skills = {
+const Skills: CollectionConfig = {
   slug: 'skills',
   admin: {
     useAsTitle: 'category',
@@ -249,7 +250,7 @@ const Skills = {
   ],
 }
 
-const SiteSettings = {
+const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
   fields: [
     {
