@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -279,5 +280,15 @@ export default buildConfig({
     // Enable auto-push to create tables automatically
     push: true,
   }),
-  plugins: [],
+  plugins: process.env.BLOB_READ_WRITE_TOKEN
+    ? [
+        vercelBlobStorage({
+          enabled: true,
+          collections: {
+            media: true,
+          },
+          token: process.env.BLOB_READ_WRITE_TOKEN,
+        }),
+      ]
+    : [],
 })
