@@ -14,7 +14,7 @@ export default async function Experience() {
 
           return (
             <div key={exp.id} className="bg-[#111] border border-[#333] rounded-xl p-8 relative overflow-hidden hover:border-white transition">
-              <div className="flex justify-between items-start mb-4">
+              <div className="flex flex-wrap justify-between items-start gap-3 mb-4">
                 <div>
                   <h3 className="text-2xl font-bold mb-1">{exp.position}</h3>
                   <p className="text-xl text-white mb-2">{exp.company}</p>

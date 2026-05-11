@@ -40,11 +40,18 @@ export default function Hero() {
           Markets
         </h1>
         
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <span className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/30 text-green-400 text-xs font-bold px-3 py-1 rounded-full">
+            <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse inline-block" />
+            Open to Opportunities
+          </span>
+        </div>
+
         <p className="text-secondary text-lg mb-8 max-w-2xl mx-auto">
-          Software Engineer | Infrastructure Enthusiast | Technical Writer | MLOps Enthusiast
+          Software Engineer · SRE · AI/ML Specialist
         </p>
-        
-        <div className="flex gap-4 mb-12 justify-center">
+
+        <div className="flex flex-wrap gap-4 mb-12 justify-center">
           <a href="#work" className="bg-white text-black px-6 py-3 rounded-full font-bold hover:bg-gray-200 transition flex items-center gap-2">
             View My Work <span>→</span>
           </a>
@@ -52,9 +59,9 @@ export default function Hero() {
             Read My Blog
           </a>
         </div>
-        
+
         <div className="tech-stack flex flex-wrap justify-center gap-3">
-          {['Next.js', 'Python', 'Docker', 'AI/ML', 'Web3', 'Node.js'].map((tech) => (
+          {['Python', 'Next.js', 'Docker', 'Prometheus', 'FastAPI', 'AI/ML'].map((tech) => (
             <span key={tech} className="bg-[#1a1a1a] text-secondary px-4 py-2 rounded-full text-sm border border-[#333]">
               {tech}
             </span>

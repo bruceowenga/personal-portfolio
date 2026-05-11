@@ -8,6 +8,16 @@ const statusLabels: Record<string, string> = {
   'completed': 'Completed',
 };
 
+const projectVisuals: Record<string, { gradient: string; icon: string }> = {
+  'homelab-observability-stack': { gradient: 'linear-gradient(135deg, #0f2027 0%, #1a3a2a 50%, #0d1f1a 100%)', icon: '📊' },
+  'farm-manager': { gradient: 'linear-gradient(135deg, #0f2010 0%, #1a4020 50%, #0d200f 100%)', icon: '🌾' },
+  'api-graveyard': { gradient: 'linear-gradient(135deg, #1a1010 0%, #3a1a1a 50%, #200f0f 100%)', icon: '💀' },
+  'linzi-ai': { gradient: 'linear-gradient(135deg, #1a1000 0%, #3a2800 50%, #1f1500 100%)', icon: '🛡️' },
+  'firefly-mcp-server': { gradient: 'linear-gradient(135deg, #001a10 0%, #003020 50%, #001510 100%)', icon: '⚡' },
+  'excel-toolkit': { gradient: 'linear-gradient(135deg, #001a0f 0%, #00391f 50%, #001509 100%)', icon: '📋' },
+  'wbts': { gradient: 'linear-gradient(135deg, #100808 0%, #2a0e0e 50%, #120808 100%)', icon: '🔥' },
+};
+
 // Force dynamic rendering since we need database access
 export const dynamic = 'force-dynamic';
 
@@ -23,7 +33,7 @@ export default async function ProjectsPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(500px, 1fr))' }}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project: any) => {
           const imageUrl = typeof project.image === 'object' && project.image?.url
             ? project.image.url
@@ -31,25 +41,28 @@ export default async function ProjectsPage() {
 
           return (
             <div key={project.id} className="project-card bg-[#111] border border-[#333] rounded-xl overflow-hidden hover:border-white transition group">
-              <div className="h-64 w-full relative" style={{
+              <div className="h-64 w-full relative overflow-hidden" style={{
                 background: imageUrl
                   ? `url(${imageUrl})`
-                  : 'linear-gradient(to bottom right, #2a2a2a, #1a1a1a)',
+                  : (projectVisuals[project.slug]?.gradient ?? 'linear-gradient(135deg, #1a1a1a, #2a2a2a)'),
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
               }}>
                 {!imageUrl && (
-                  <div className="absolute inset-0 flex items-center justify-center text-secondary opacity-20 text-4xl font-bold">
-                    Project Preview
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                    <span className="text-5xl">{projectVisuals[project.slug]?.icon ?? '💻'}</span>
+                    <span className="text-xs text-secondary/50 uppercase tracking-widest font-mono">
+                      {project.slug}
+                    </span>
                   </div>
                 )}
               </div>
 
-              <div className="p-8">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-2xl font-bold">{project.title}</h3>
+              <div className="p-4 md:p-8">
+                <div className="flex flex-wrap justify-between items-start gap-2 mb-4">
+                  <h3 className="text-xl md:text-2xl font-bold min-w-0">{project.title}</h3>
                   {project.status && (
-                    <span className="text-xs font-bold px-2 py-1 rounded bg-[#222] text-secondary border border-[#333]">
+                    <span className="text-xs font-bold px-2 py-1 rounded bg-[#222] text-secondary border border-[#333] shrink-0">
                       {statusLabels[project.status] || project.status}
                     </span>
                   )}
