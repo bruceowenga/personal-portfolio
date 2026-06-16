@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Bruce | Software Engineer",
-  description: "Building AI-Powered Solutions for African Markets",
+  description: "AI/ML Engineer & MLOps Specialist",
 };
 
 export default function RootLayout({

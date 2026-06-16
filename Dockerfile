@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # Base stage for shared dependencies
-FROM node:20-alpine AS base
+FROM node:22-alpine AS base
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
@@ -9,6 +9,10 @@ WORKDIR /app
 FROM base AS deps
 COPY package.json package-lock.json* ./
 RUN npm ci --legacy-peer-deps
+
+# Patch: Allow Payload schema push in production (needed for Docker)
+RUN sed -i "s/process.env.NODE_ENV !== 'production' && //" \
+    node_modules/@payloadcms/db-postgres/dist/connect.js
 
 # Builder stage
 FROM base AS builder
@@ -39,16 +43,17 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copy public assets
-COPY --from=builder /app/public ./public
+# Copy full build output and dependencies (needed for Payload CMS runtime)
+COPY --from=deps --chown=nextjs:nodejs /app/node_modules ./node_modules
+COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/package.json ./
+COPY --from=builder --chown=nextjs:nodejs /app/next.config.mjs ./
+COPY --from=builder --chown=nextjs:nodejs /app/payload.config.ts ./
+COPY --from=builder --chown=nextjs:nodejs /app/tsconfig.json ./
 
-# Set up directory for Next.js cache
-RUN mkdir .next
-RUN chown nextjs:nodejs .next
-
-# Copy standalone build output
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+# Create media directory for file uploads
+RUN mkdir -p /app/media && chown nextjs:nodejs /app/media
 
 USER nextjs
 
@@ -57,4 +62,4 @@ EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-CMD ["node", "server.js"]
+CMD ["npm", "start"]

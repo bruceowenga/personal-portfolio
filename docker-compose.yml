@@ -4,23 +4,29 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        - PAYLOAD_SECRET=${PAYLOAD_SECRET}
+        - PAYLOAD_SECRET=${PAYLOAD_SECRET:-dev-secret-key-change-in-production}
         - DATABASE_URI=postgresql://postgres:postgres@db:5432/portfolio
         - POSTGRES_URL=postgresql://postgres:postgres@db:5432/portfolio
-        - NEXT_PUBLIC_SERVER_URL=${NEXT_PUBLIC_SERVER_URL:-http://localhost:3000}
+        - NEXT_PUBLIC_SERVER_URL=${NEXT_PUBLIC_SERVER_URL:-http://192.168.100.27:3005}
     ports:
-      - "3000:3000"
+      - "3005:3000"
     environment:
-      - PAYLOAD_SECRET=${PAYLOAD_SECRET}
+      - PAYLOAD_SECRET=${PAYLOAD_SECRET:-dev-secret-key-change-in-production}
       - DATABASE_URI=postgresql://postgres:postgres@db:5432/portfolio
       - POSTGRES_URL=postgresql://postgres:postgres@db:5432/portfolio
-      - NEXT_PUBLIC_SERVER_URL=${NEXT_PUBLIC_SERVER_URL:-http://localhost:3000}
+      - NEXT_PUBLIC_SERVER_URL=${NEXT_PUBLIC_SERVER_URL:-http://192.168.100.27:3005}
       - GHOST_CONTENT_API_KEY=${GHOST_CONTENT_API_KEY:-}
       - BLOB_READ_WRITE_TOKEN=${BLOB_READ_WRITE_TOKEN:-}
     depends_on:
       db:
         condition: service_healthy
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO /dev/null http://localhost:3000/ || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
 
   db:
     image: postgres:16-alpine
@@ -30,14 +36,18 @@ services:
       - POSTGRES_DB=portfolio
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5433:5432"  # Use 5433 to avoid conflict with local PostgreSQL
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
+      interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 60        # 60 × 10s = 600s (10 min) of retries after start_period
+      start_period: 60s  # Don't count failures for the first 60s
+    stop_grace_period: 120s  # Give Postgres time to checkpoint on planned restarts
     restart: unless-stopped
+    command: >
+      postgres
+        -c checkpoint_completion_target=0.9
+        -c wal_buffers=16MB
 
 volumes:
   postgres_data:

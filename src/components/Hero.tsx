@@ -35,9 +35,9 @@ export default function Hero() {
         </div>
         
         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-          Building AI-Powered<br />
-          <span className="text-secondary">Solutions</span> for African<br />
-          Markets
+          AI/ML Engineer
+          <br />
+          <span className="text-secondary"> &</span> MLOps Specialist
         </h1>
         
         <div className="flex items-center justify-center gap-2 mb-4">
@@ -48,7 +48,7 @@ export default function Hero() {
         </div>
 
         <p className="text-secondary text-lg mb-8 max-w-2xl mx-auto">
-          Software Engineer · SRE · AI/ML Specialist
+          Building intelligent systems that work in production — agentic workflows, LLM infrastructure, and SRE-grade reliability.
         </p>
 
         <div className="flex flex-wrap gap-4 mb-12 justify-center">
@@ -61,7 +61,7 @@ export default function Hero() {
         </div>
 
         <div className="tech-stack flex flex-wrap justify-center gap-3">
-          {['Python', 'Next.js', 'Docker', 'Prometheus', 'FastAPI', 'AI/ML'].map((tech) => (
+          {['LangGraph', 'Python', 'LLMs', 'Prometheus', 'FastAPI', 'Docker'].map((tech) => (
             <span key={tech} className="bg-[#1a1a1a] text-secondary px-4 py-2 rounded-full text-sm border border-[#333]">
               {tech}
             </span>

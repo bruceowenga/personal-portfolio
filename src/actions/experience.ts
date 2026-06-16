@@ -9,7 +9,7 @@ export async function getAllExperience() {
 
     const experience = await payload.find({
       collection: 'experience',
-      sort: '-order', // Sort by order descending (higher numbers first)
+      sort: 'order', // order=1 is most recent (TSAVO), ascending = newest first
     })
 
     return experience.docs

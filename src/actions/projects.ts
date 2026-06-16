@@ -14,6 +14,7 @@ export async function getFeaturedProjects() {
           equals: true,
         },
       },
+      sort: 'sortOrder', // ascending, lowest number first
       limit: 4,
     })
 
@@ -30,6 +31,7 @@ export async function getAllProjects() {
 
     const projects = await payload.find({
       collection: 'projects',
+      sort: 'sortOrder', // ascending, lowest number first
     })
 
     return projects.docs

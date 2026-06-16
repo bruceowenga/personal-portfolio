@@ -63,5 +63,19 @@ export const Projects: CollectionConfig = {
       required: true,
       unique: true,
     },
+    {
+      name: 'caseStudy',
+      type: 'textarea',
+      label: 'Case Study (paragraphs separated by blank lines)',
+    },
+    {
+      name: 'highlights',
+      type: 'array',
+      label: 'Key Metrics / Highlights',
+      fields: [
+        { name: 'metric', type: 'text', label: 'Metric Label' },
+        { name: 'value', type: 'text', label: 'Value' },
+      ],
+    },
   ],
 }

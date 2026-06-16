@@ -15,13 +15,13 @@ export default async function About() {
       <div className="flex flex-col md:flex-row gap-12 items-start">
         <div className="flex-1 text-secondary leading-relaxed space-y-6">
           <p>
-            I build software that bridges cutting-edge AI capabilities with practical business needs in African markets. My passion lies in the intersection of technology and entrepreneurship, particularly in creating solutions that scale across emerging economies.
+            I'm an AI/ML Engineer and MLOps Specialist with 7+ years building production-grade systems. Most recently at TSAVO Real Estate in Nairobi, where I owned the full observability stack (Prometheus, Grafana, Loki, Alertmanager) monitoring 12+ production services, architected enterprise integrations between Dynamics 365 F&O, Zoho CRM, and 3CX telephony, and led AI adoption — deploying local LLM infrastructure, building RAG pipelines, and developing Linzi AI, an agentic SRE platform built on LangGraph and local LLMs.
           </p>
           <p>
-            With experience spanning full-stack development, infrastructure management, and AI/ML integration, I approach problems holistically—from the database layer to intelligent user experiences. I'm deeply invested in the African tech ecosystem and believe in building tools that empower local businesses.
+            I specialize in the intersection of AI/ML and infrastructure, building custom Prometheus exporters for LLM inference metrics, deploying local LLMs for document processing, and designing RAG pipelines that solve real business problems. I believe in bringing enterprise-grade engineering practices (SLOs, structured logging, zero-downtime deployments) to every layer of the stack.
           </p>
           <p>
-            When I'm not deploying Docker containers or fine-tuning AI models, you'll find me maintaining my homelab (named after Norse gods—because why not?), discovering new music, or documenting my technical journey on my blog.
+            Outside of client work, I'm building <strong className="text-white">AgroPulse</strong> (AI + IoT for agricultural carbon markets) and <strong className="text-white">Linzi AI</strong> (agentic SRE for African SMBs). My homelab (a self-hosted infrastructure cluster named after Norse gods) is my proving ground for everything from Kubernetes experiments to custom alerting pipelines. I document it all on my blog.
           </p>
 
           <div className="pt-6">

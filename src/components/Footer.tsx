@@ -26,28 +26,47 @@ export default function Footer() {
           <div>
             <h4 className="font-bold mb-4">Writing</h4>
             <ul className="space-y-2 text-secondary text-sm">
-              <li><Link href="#blog" className="hover:text-white transition">Blog</Link></li>
-              <li><Link href="#" className="hover:text-white transition">Personal Site</Link></li>
+              <li>
+                <a href="https://blog.brucembudi.dev" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/bruceowenga/homelab-public" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+                  Homelab (Public)
+                </a>
+              </li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-bold mb-4">Connect</h4>
             <ul className="space-y-2 text-secondary text-sm">
-              <li><Link href="#" className="hover:text-white transition">GitHub</Link></li>
-              <li><Link href="#" className="hover:text-white transition">LinkedIn</Link></li>
-              <li><Link href="#" className="hover:text-white transition">Twitter</Link></li>
+              <li>
+                <a href="https://github.com/bruceowenga" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+                  GitHub
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/brucembudi" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href="https://blog.brucembudi.dev" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+                  Blog
+                </a>
+              </li>
             </ul>
           </div>
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center text-xs text-secondary pt-8 border-t border-[#333]">
-          <p>© 2025 Bruce Mbudi. All rights reserved.</p>
+          <p>© 2026 Bruce Mbudi. All rights reserved.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
-            <Link href="#" className="hover:text-white transition">Privacy</Link>
-            <span className="hover:text-white transition">Built with Next.js</span>
+            <span className="hover:text-white transition">Built with Next.js + PayloadCMS</span>
             <span className="flex items-center gap-1 text-yellow-500">
-              🏆 Servers named after Norse gods
+              ⚡ Servers named after Norse gods
             </span>
           </div>
         </div>

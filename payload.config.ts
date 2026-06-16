@@ -73,6 +73,15 @@ const Projects = {
       defaultValue: false,
     },
     {
+      name: 'sortOrder',
+      type: 'number',
+      defaultValue: 99,
+      admin: {
+        position: 'sidebar',
+        description: 'Lower number = appears first. Set 1 for Linzi AI, 2 for Ulinzi, 3 for wbts etc.',
+      },
+    },
+    {
       name: 'demoUrl',
       type: 'text',
       label: 'Demo URL',
@@ -87,6 +96,20 @@ const Projects = {
       type: 'text',
       required: true,
       unique: true,
+    },
+    {
+      name: 'caseStudy',
+      type: 'textarea',
+      label: 'Case Study (paragraphs separated by blank lines)',
+    },
+    {
+      name: 'highlights',
+      type: 'array',
+      label: 'Key Metrics / Highlights',
+      fields: [
+        { name: 'metric', type: 'text', label: 'Metric Label' },
+        { name: 'value', type: 'text', label: 'Value' },
+      ],
     },
   ],
 }
